@@ -1,0 +1,15 @@
+sudo apt update
+sudo apt install python3-pip
+sudo apt install python3.10-venv
+python3 -m venv churn_venv
+source churn_venv/bin/activate
+pip install pandas
+pip install scikit-learn
+pip install numpy
+pip install boto3
+pip install --upgrade awscli
+pip install apache-airflow
+airflow version
+python3 --version
+aws configure
+airflow standalone

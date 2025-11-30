@@ -3,7 +3,7 @@
 [![AWS](https://img.shields.io/badge/AWS-Lambda%20%7C%20S3%20%7C%20EC2-orange)](https://aws.amazon.com/)
 [![Apache Airflow](https://img.shields.io/badge/Apache-Airflow-017CEE?logo=apache-airflow)](https://airflow.apache.org/)
 [![Snowflake](https://img.shields.io/badge/Snowflake-Data%20Warehouse-29B5E8)](https://www.snowflake.com/)
-[![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-3.12-blue?logo=python)](https://www.python.org/)
 [![Power BI](https://img.shields.io/badge/Power%20BI-Dashboard-yellow?logo=powerbi)](https://powerbi.microsoft.com/)
 
 
@@ -11,7 +11,7 @@
 
 ## 🎯 Project Overview
 
-A production-ready, end-to-end **hybrid data engineering pipeline** that combines **event-driven architecture** with **orchestration monitoring** to predict customer churn for a telecommunications company. The project ingests raw customer data, performs ETL transformations, trains a Random Forest ML model, loads data into Snowflake, and visualizes insights in Power BI.
+An end-to-end **hybrid data engineering pipeline** that combines **event-driven architecture** with **orchestration monitoring** to predict customer churn for a telecommunications company. The project ingests raw customer data, performs ETL transformations, trains a Random Forest ML model, loads data into Snowflake, and visualizes insights in Power BI.
 
 ### Business Problem
 Customer churn is a critical issue for telecom companies. This project:
@@ -32,6 +32,7 @@ Customer churn is a critical issue for telecom companies. This project:
 ## 🏗️ Architecture
 
 ### Hybrid Event-Driven + Orchestrated Architecture
+<img width="2593" height="809" alt="diagram-export-11-30-2025-1_37_27-PM" src="https://github.com/user-attachments/assets/7d071931-1cee-4015-970b-bc40625edc82" />
 
 
 ---
@@ -129,13 +130,13 @@ aws s3 ls
 
 1. Go to **AWS Lambda Console** → **Create function**
 2. **Function name**: `transform-customer-churn-data`
-3. **Runtime**: Python 3.11
+3. **Runtime**: Python 3.10
 4. **Architecture**: x86_64
 5. Copy code from `lambda/lambda1_transform/lambda_function.py`
 6. **Configuration**:
    - Memory: 512 MB
    - Timeout: 2 minutes
-7. **Add Layer**: AWSSDKPandas-Python311
+7. **Add Layer**: AWSSDKPandas-Python310
 8. **Add S3 Trigger**:
    - Bucket: `first-customer-churn-raw`
    - Event type: PUT
@@ -160,7 +161,7 @@ zip -r sklearn-layer.zip python
 
 3. **Create Lambda function**:
    - Function name: `train-churn-ml-model`
-   - Runtime: Python 3.11
+   - Runtime: Python 3.10
    - Memory: 1024 MB
    - Timeout: 5 minutes
    - Attach sklearn layer
@@ -524,6 +525,9 @@ aws s3 cp data/CustomerChurn.csv s3://first-customer-churn-raw/CustomerChurn.csv
 ```
 
 #### **Stage 6: Business Intelligence (Power BI)**
+
+<img width="1530" height="848" alt="image" src="https://github.com/user-attachments/assets/74cba597-0182-480e-a471-a04d58c74c52" />
+
 ```
 23. Power BI connects to Snowflake view
 24. Dashboards refresh (scheduled or on-demand)
